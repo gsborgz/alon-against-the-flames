@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/classes.rpy", line 29: invalid syntax
+                    STR = 0
+                         ^
+
+Ren'Py Version: Ren'Py 8.3.7.25031702
+Tue Jun 10 23:51:36 2025
