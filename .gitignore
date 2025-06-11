@@ -1,31 +1,27 @@
-# vscode
-.vscode
-# macOS-related files
-.DS_Store 
-.AppleDouble 
-.LSOverride
-# Windows-related files 
+/.vscode
+
 Thumbs.db 
 Thumbs.db:encryptable 
 ehthumbs.db 
 ehthumbs_vista.db 
 [Dd]esktop.ini
 
-*.rpyc 
-*.rpyb 
-*.rpymc 
-*.pyc 
-*.pyo
+**/*.rpyc 
+**/*.rpyb 
+**/*.rpymc 
+**/*.pyc 
+**/*.pyo
 
 *~ 
 *.bak 
 *.odt#
 
-saves 
-tmp 
-cache 
+/game/saves 
+/game/tmp 
+/game/cache 
+/game/env
 env 
-_wfCache
+/game/_wfCache
 
 log.txt 
 errors.txt 
