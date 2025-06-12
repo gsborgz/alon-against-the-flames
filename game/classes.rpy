@@ -10,18 +10,17 @@ init python:
     class Dice:
         @staticmethod
         def rollD100():
-            return random.randint(1, 100)
+            return renpy.display_menu([("Jogar D100", random.randint(1, 100))])
 
         @staticmethod
         def rollD6():
-            return random.randint(1, 6)
+            return renpy.display_menu([("Jogar D6", random.randint(1, 6))])
 
     class Player:
         def __init__(self):
-            # Strength (STR), Constitution (CON), Power (POW), Dexterity (DEX), Appearance (APP), Size (SIZ), Intelligence (INT), and Education (EDU).
-            # Força (FOR), Con stituição (CON), Poder (POD), Destreza (DES), Aparência (APA), Tamanho (TAM), Inteligência (INT) e Educação (EDU).
             self.name = ""
-            self.healthPoints = 0
+            self.maxHealthPoints = 0
+            self.maxSanityPoints = 0
             self.sanityPoints = 0
             self.magicPoints = 0
             self.luckPoints = 0
@@ -39,30 +38,39 @@ init python:
         def takeHealthDamage(self, damage):
             self.healthPoints -= damage
 
+            if self.healthPoints < 0:
+                self.healthPoints = 0
+
         def restoreHealth(self, amount):
             self.healthPoints += amount
+
+            if self.healthPoints > self.maxHealthPoints:
+                self.healthPoints = self.maxHealthPoints
 
         def takeSanityDamage(self, amount):
             self.sanityPoints -= amount
 
+            if self.sanityPoints < 0:
+                self.sanityPoints = 0
+
         def restoreSanity(self, amount):
             self.sanityPoints += amount
 
-        def setAttributes(self, attrs):
-            player.attributes.STR = int(attrs["playerSTR"])
-            player.attributes.CON = int(attrs["playerCON"])
-            player.attributes.POW = int(attrs["playerPOW"])
-            player.attributes.DEX = int(attrs["playerDEX"])
-            player.attributes.APP = int(attrs["playerAPP"])
-            player.attributes.SIZ = int(attrs["playerSIZ"])
-            player.attributes.INT = int(attrs["playerINT"])
-            player.attributes.EDU = int(attrs["playerEDU"])
-            player.healthPoints = (player.attributes.SIZ + player.attributes.CON) // 10
-            player.sanityPoints = player.attributes.POW
-            player.magicPoints = player.attributes.POW // 5
+            if self.sanityPoints > self.maxSanityPoints:
+                self.sanityPoints = self.maxSanityPoints
 
-        def setAttribute(self, attr, value):
-            self.attributes[attr] = value
+        def setAttributes(self, attrs):
+            self.attributes.STR = int(attrs["playerSTR"])
+            self.attributes.CON = int(attrs["playerCON"])
+            self.attributes.POW = int(attrs["playerPOW"])
+            self.attributes.DEX = int(attrs["playerDEX"])
+            self.attributes.APP = int(attrs["playerAPP"])
+            self.attributes.SIZ = int(attrs["playerSIZ"])
+            self.attributes.INT = int(attrs["playerINT"])
+            self.attributes.EDU = int(attrs["playerEDU"])
+            self.healthPoints = (self.attributes.SIZ + self.attributes.CON) // 10
+            self.sanityPoints = self.attributes.POW
+            self.magicPoints = self.attributes.POW // 5
 
         def testAttribute(self, attr, roll, difficulty="normal"):
             values = {
@@ -105,6 +113,19 @@ init python:
             }
 
             return roll <= valuePerDifficulty.get(difficulty, 0)
+
+        def reset(self):
+            self.attributes.STR = 0
+            self.attributes.CON = 0
+            self.attributes.POW = 0
+            self.attributes.DEX = 0
+            self.attributes.APP = 0
+            self.attributes.SIZ = 0
+            self.attributes.INT = 0
+            self.attributes.EDU = 0
+            self.healthPoints = 0
+            self.sanityPoints = 0
+            self.magicPoints = 0
 
     class Npc:
         def __init__(self, name, img, color):
