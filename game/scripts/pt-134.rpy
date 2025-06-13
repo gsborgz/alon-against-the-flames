@@ -6,23 +6,20 @@ label part134:
     "Uma mulher encorpada entra no ônibus em um povoado e então acena polidamente para você. Ela desce no vilarejo seguinte."
     "A estrada sobe um pouco, passando por mil harais e pomares. As folhas estão mudando de cor e as árvores estão vivas com vermelhos e dourados gloriosos."
     "Você está começando a cochilar quando o condutor faz uma curva brusca em alta velocidade."
+    "Agora você deve fazer um teste de DES. Os testes em Chamado de Cthulhu possuem 3 níveis de dificuldade: [difficultyText['normal']], [difficultyText['hard']] e [difficultyText['extreme']]."
+    "Essa dificuldade determina o valor máximo que você precisa obter em um dado de 100 lados (1D100)."
+    "Para um teste [difficultyText['normal']], você deve obter um valor igual ou abaixo do valor do atributo sento testado."
+    "Para um teste [difficultyText['hard']], você deve obter um valor igual ou abaixo de metade do valor do atributo sento testado."
+    "E para um teste [difficultyText['extreme']], você deve obter um valor igual ou abaixo de um quinto do valor do atributo sento testado."
+    "Agora faça um teste ([difficultyText['normal']]) de Destreza [player.getAttrValuesText(player.attributes.DEX)]."
 
-    # Você também tem um montante de Sorte.
-    # Multiplique por 5 o resultado de sua jogada de 3D6,
-    # para conseguir seu valor inicial de Sorte e escreva-o em sua ficha de investigador.
+    $ result = dice.rollD100(1)
 
-    # Agora você deve fazer um teste de DES. Jogue 1D100.
-    # Isso significa jogar dois dados de dez lados e usar um valor para as dezenas e um valor para as unidades.
-    # Você deve escolher qual é qual antes de fazer a jogada!
+    if player.testAttribute(player.attributes.DEX, result, 'normal'):
+        "Agora faça um teste ([difficultyText['normal']]) de Destreza [player.getAttrValuesText(player.attributes.DEX)].\nResultado: {color=#05df72}[result]{/color}"
 
-    # Se o seu resultado foi igual ou menor que a sua DES, você passou no teste. Se foi maior do que sua DES, você falhou.
-    
-    # Mas Chamado de Cthulhu é um jogo de mistério e horror. Os terríveis desastres que podem acontecer com seu personagem fazem parte da diversão.
-    # Você não irá necessariamente se divertir mais caso seja bem sucedido em todos os testes.
+        call part261
+    else:
+        "Agora faça um teste ([difficultyText['normal']]) de Destreza [player.getAttrValuesText(player.attributes.DEX)].\nResultado: {color=#fb2c36}[result]{/color}"
 
-
-    # Se você passou no teste de DES, vá para 261.
-
-    # Se você falhou no teste de DES, vá para 59.
-
-    return
+        call part59

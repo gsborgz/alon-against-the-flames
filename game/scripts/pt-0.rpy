@@ -45,16 +45,10 @@ label attributesDefinition:
 
         renpy.say(None, "Antes de terminarmos você precisará jogar três dados de seis lados (3d6).")
         renpy.say(None, "Os resultados das três rolagens serão somados e multiplicados por 5 para determinar seus pontos de sorte iniciais.")
- 
-        valuesRolled = []
 
-        for i in range(3):
-            result = Dice.rollD6()
-            valuesRolled.append(result)
-            player.luckPoints += result
-            renpy.say(None, f"Você rolou: {', '.join(map(str, valuesRolled))}")
-
-        player.luckPoints *= 5
+        result = dice.rollD6(3)
+        player.luckPoints = sum(result) * 5
+        renpy.say(None, f"Resultado: {', '.join(map(str, result))}")
 
     "Sua ficha de personagem ficou assim:\nForça: {color=#0000ffff}[player.attributes.STR]{/color} Constituição: {color=#0000ffff}[player.attributes.CON]{/color}\nPoder: {color=#0000ffff}[player.attributes.POW]{/color} Destreza: {color=#0000ffff}[player.attributes.DEX]{/color}\nContinuar..."
     "Aparência: {color=#0000ffff}[player.attributes.APP]{/color} Tamanho: {color=#0000ffff}[player.attributes.SIZ]{/color}\nInteligência: {color=#0000ffff}[player.attributes.INT]{/color} Educação: {color=#0000ffff}[player.attributes.EDU]{/color}\nContinuar..."

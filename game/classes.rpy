@@ -8,13 +8,33 @@ init python:
     import random
 
     class Dice:
-        @staticmethod
-        def rollD100():
-            return renpy.display_menu([("Jogar D100", random.randint(1, 100))])
+        def rollD100(self, quantity):
+            quantityText = str(quantity)
+            result = renpy.display_menu([("Jogar " + quantityText + "D100", self.roll(quantity, 100))])
 
-        @staticmethod
-        def rollD6():
-            return renpy.display_menu([("Jogar D6", random.randint(1, 6))])
+            if quantity == 1:
+                return result[0]
+            else:
+                return result
+        
+        def rollD6(self, quantity):
+            quantityText = str(quantity)
+            result = renpy.display_menu([("Jogar " + quantityText + "D6", self.roll(quantity, 6))])
+
+            if quantity == 1:
+                return result[0]
+            else:
+                return result
+        
+        def roll(self, times, sides):
+            results = []
+
+            for _ in range(times):
+                result = random.randint(1, sides)
+                results.append(result)
+
+            return results
+
 
     class Player:
         def __init__(self):
@@ -72,48 +92,6 @@ init python:
             self.sanityPoints = self.attributes.POW
             self.magicPoints = self.attributes.POW // 5
 
-        def testAttribute(self, attr, roll, difficulty="normal"):
-            values = {
-                "STR": self.attributes.STR,
-                "CON": self.attributes.CON,
-                "POW": self.attributes.POW,
-                "DEX": self.attributes.DEX,
-                "APP": self.attributes.APP,
-                "SIZ": self.attributes.SIZ,
-                "INT": self.attributes.INT,
-                "EDU": self.attributes.EDU
-            }
-
-            valuesHalf = {
-                "STR": self.attributes.STR // 2,
-                "CON": self.attributes.CON // 2,
-                "POW": self.attributes.POW // 2,
-                "DEX": self.attributes.DEX // 2,
-                "APP": self.attributes.APP // 2,
-                "SIZ": self.attributes.SIZ // 2,
-                "INT": self.attributes.INT // 2,
-                "EDU": self.attributes.EDU // 2
-            }
-
-            valuesFifths = {
-                "STR": self.attributes.STR // 5,
-                "CON": self.attributes.CON // 5,
-                "POW": self.attributes.POW // 5,
-                "DEX": self.attributes.DEX // 5,
-                "APP": self.attributes.APP // 5,
-                "SIZ": self.attributes.SIZ // 5,
-                "INT": self.attributes.INT // 5,
-                "EDU": self.attributes.EDU // 5
-            }
-
-            valuePerDifficulty = {
-                "easy": values.get(attr, 0),
-                "normal": valuesHalf.get(attr, 0),
-                "hard": valuesFifths.get(attr, 0)
-            }
-
-            return roll <= valuePerDifficulty.get(difficulty, 0)
-
         def reset(self):
             self.attributes.STR = 0
             self.attributes.CON = 0
@@ -126,6 +104,21 @@ init python:
             self.healthPoints = 0
             self.sanityPoints = 0
             self.magicPoints = 0
+
+        def testAttribute(self, attr, roll, difficulty="normal"):
+            if difficulty == "hard":
+                return roll <= attr // 2
+            elif difficulty == "extreme":
+                return roll <= attr // 5
+            else:
+                return roll <= attr
+
+        def getAttrValuesText(self, attr):
+            value = str(attr)
+            half = str(attr // 2)
+            fifth = str(attr // 5)
+
+            return "({color=#fef9c2}" + value + "{/color}-{color=#ffb86a}" + half + "{/color}-{color=#ff637e}" + fifth + "{/color})"
 
     class Npc:
         def __init__(self, name, img, color):
