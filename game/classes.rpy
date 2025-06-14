@@ -39,6 +39,7 @@ init python:
     class Player:
         def __init__(self):
             self.name = ""
+            self.occupation = ""
             self.maxHealthPoints = 0
             self.maxSanityPoints = 0
             self.sanityPoints = 0
@@ -104,6 +105,8 @@ init python:
             self.healthPoints = 0
             self.sanityPoints = 0
             self.magicPoints = 0
+            self.occupation = ""
+            self.name = ""
 
         def testAttribute(self, attr, roll, difficulty="normal"):
             if difficulty == "hard":
@@ -122,10 +125,13 @@ init python:
 
     class Npc:
         def __init__(self, name, img, color):
-            self.character = Character(name, color=color)
+            self.name = name
+            self.color = color
             self.img = img
+            self.character = Character(name, color=color)
 
         def say(self, text):
+            self.enable()
             self.character(text)
 
         def enable(self):
@@ -138,3 +144,22 @@ init python:
 
         def hide(self):
             renpy.hide(self.img)
+
+        def updateCharacter(self, newName, newImage, newColor):
+            name = self.name
+            img = self.img
+            color = self.color
+            
+            if newName:
+                name = newName
+
+            if newImage:
+                img = newImage
+
+            if newColor:
+                character.color = newColor
+
+            self.name = name
+            self.color = color
+            self.img = img
+            self.character = Character(name, color=color)

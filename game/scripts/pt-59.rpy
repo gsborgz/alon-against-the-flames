@@ -7,7 +7,6 @@ label part59:
     "O motorista volta para dentro e vê você no chão. Ele parece preocupado e o ajuda a voltar para o seu assento."
     "Você entende agora o que aconteceu. Um trator Fordson parara na estrada e o motorista precisou desviar para evitar tal obstáculo de aço."
 
-    $ busdriver.enable()
     $ busdriver.say("Desculpe! Todo esse campo por aí e ele tem que escolher logo a estrada pra estacionar. Você tá bem?")
     $ busdriver.hide()
 

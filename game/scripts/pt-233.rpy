@@ -6,6 +6,6 @@ label part233:
     "Por alguns minutos, você ainda pode ver o pináculo da igreja sobre a crista de uma colina baixa. Então a estrada descende e ele, também, desaparece."
     "Arkham é seu novo lar. Você viajará para lá, e começará de novo."
 
-    call part134
+    jump part134
 
     return

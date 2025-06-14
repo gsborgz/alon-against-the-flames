@@ -5,14 +5,12 @@ label part263:
     "Quando ele volta, está enrolando um cigarro entre os dedos amarelados. Ele dá uma última volta no papel e o examina enquanto pega uma caixa de fósforos." 
     "É um homem magro com cinquenta e poucos anos, vestido com uma camisa manchada que traz o emblema da companhia de ônibus. No entanto, possui olhos afiados acima de suas olheiras."
 
-    $ busdriver.enable()
     $ busdriver.say("Vai pra onde?")
     $ busdriver.disable()
 
     "Você mostra seu bilhete para Ossipee. De lá, você fará conexão em Rochester e Portsmouth, antes da linha costeira para Newburyport e, finalmente, chegará em Arkham."
     "Você deve conseguir pagar uma passagem de trem para pelo menos parte do caminho; caso contrário, esta será a primeira de muitas longas viagens de ônibus."
 
-    $ busdriver.enable()
     $ busdriver.say("Mmm-hm... O bagageiro fica ali em cima.")
     $ busdriver.hide()
 
