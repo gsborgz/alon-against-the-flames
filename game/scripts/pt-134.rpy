@@ -11,15 +11,15 @@ label part134:
     "Para um teste [difficultyText['normal']], você deve obter um valor igual ou abaixo do valor do atributo sento testado."
     "Para um teste [difficultyText['hard']], você deve obter um valor igual ou abaixo de metade do valor do atributo sento testado."
     "E para um teste [difficultyText['extreme']], você deve obter um valor igual ou abaixo de um quinto do valor do atributo sento testado."
-    "Agora faça um teste ([difficultyText['normal']]) de Destreza [player.getAttrValuesText(player.attributes.DEX)]."
+    "Agora faça um teste ([difficultyText['normal']]) de Destreza [player.getPropertyValueText(player.attributes.dex)]."
 
     $ result = dice.rollD100(1)
 
-    if player.testAttribute(player.attributes.DEX, result, 'normal'):
-        "Agora faça um teste ([difficultyText['normal']]) de Destreza [player.getAttrValuesText(player.attributes.DEX)].\nResultado: {color=#05df72}[result]{/color}"
+    if player.testProperty(player.attributes.dex, result):
+        "Agora faça um teste ([difficultyText['normal']]) de Destreza [player.getPropertyValueText(player.attributes.dex)].\nResultado: {color=#05df72}[result]{/color}"
 
         call part261
     else:
-        "Agora faça um teste ([difficultyText['normal']]) de Destreza [player.getAttrValuesText(player.attributes.DEX)].\nResultado: {color=#fb2c36}[result]{/color}"
+        "Agora faça um teste ([difficultyText['normal']]) de Destreza [player.getPropertyValueText(player.attributes.dex)].\nResultado: {color=#fb2c36}[result]{/color}"
 
         call part59

@@ -15,8 +15,6 @@ label part71:
 
         player.name = playerName
 
-    # TODO: "Você pode acrescentar sua idade; para os propósitos desta aventura, seu personagem provavelmente teria entre 23 e 36 anos."
-
     "O acidente foi no mínimo tanto culpa de Silas quanto do fazendeiro."
     "Mas não parece inteligente antagonizar o homem enquanto ele está dirigindo apenas para você no meio do nada."
     "O ônibus toma uma estrada mais estreita, que serpenteia subindo por colinas tomadas por flores tas. Silas fica conversador."
@@ -30,26 +28,13 @@ label part71:
     $ busdriver.say("Um emprego é? E trabalha com o quê?")
     $ busdriver.hide()
 
-    # TODO: adicionar mais opções de ocupação
-    menu:
-        "Escolha sua ocupação entre as opções acima."
-
-        "Antiquário":
-            $ player.occupation = "Antiquário"
-            call part102
-
-        "Médico":
-            $ player.occupation = "Médico"
-            call part226
-
-        "Jornalista":
-            $ player.occupation = "Jornalista"
-            call part239
-
-        "Detetive Particular":
-            $ player.occupation = "Detetive Particular"
-            call part249
-
-        "Professor":
-            $ player.occupation = "Professor"
-            call part265
+    if player.occupation == PlayerOccupation.ANTIQUARIAN:
+        call part102
+    elif player.occupation == PlayerOccupation.DOCTOR:
+        call part226
+    elif player.occupation == PlayerOccupation.JOURNALIST:
+        call part239
+    elif player.occupation == PlayerOccupation.INVESTIGATOR:
+        call part249
+    elif player.occupation == PlayerOccupation.PROFESSOR:
+        call part265
