@@ -1,5 +1,5 @@
 label intro:
-    "Esta é uma aventura para o RPG Chamado de Cthulhu. É uma história de horror ambienta da na década de 1920 em que você é o personagem principal e suas escolhas determinam o resultado da trama."
+    "Esta é uma aventura para o RPG Chamado de Cthulhu. É uma história de horror ambientada na década de 1920 em que você é o personagem principal e suas escolhas determinam o resultado da trama."
     "Acomode-se em uma cadeira confortável perto do fogo da lareira e então embarque nesta aventura."
     "... Pensando bem, não se sente muito perto do fogo."
     # "Antes de começarmos, como isso se trata de uma aventura de RPG, você precisará criar sua ficha de ersonagem."
